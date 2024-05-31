@@ -109,11 +109,11 @@ def test_pet_delete_first():
     else:
         pet_id = my_pets['pets'][0]['id']
         status, temp = pf.delete_pet(auth_key, pet_id)
+
         assert status == 200
         list_len_save -= 1
 
     temp, my_pets = pf.get_list_of_pets(auth_key, "my_pets")
-
 
     assert pet_id not in my_pets.values()
     assert len(my_pets['pets']) == list_len_save
@@ -176,6 +176,7 @@ def test_pet_delete_any():
     else:
         pet_id = random.choice(my_pets['pets'])['id']
         status, temp = pf.delete_pet(auth_key, pet_id)
+
         assert status == 200
         list_len_save -= 1
 
@@ -237,6 +238,7 @@ def test_pet_get_list_inv_key(pet_filter='my_pets'):
     status, result = pf.get_list_of_pets(auth_key, pet_filter)
 
     assert status == 403
+
 
 def test_pet_add_inv_name(name=None, animal_type='Некто',
                  age='9', pet_photo='images/glasscat.jpg'):
